@@ -34,7 +34,7 @@ function getTodaysWord()
     const firstDate = new Date(2022, 1, 1);
     const secondDate = new Date();
     
-    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) + 1;
+    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) - 10;
 
     $("#wordCount").text(`Word ${diffDays % words.length}`)
 
@@ -57,11 +57,6 @@ function highlightSquares(scores, squares, setText=false)
                 elm.children().text(currentWord.split(" ")[i]);
             }
         }
-        else if (scores[i] == 0.5)
-        {
-            elm.css("color", "#ffffff");
-            elm.css("background-color", "#c9b458");
-        }
         else
         {
             break;
@@ -82,11 +77,6 @@ function highlightSquares(scores, squares, setText=false)
                 elm.children().text(currentWord.split(" ")[i]);
             }
         }
-        else if (scores[i] == 0.5)
-        {
-            elm.css("color", "#ffffff");
-            elm.css("background-color", "#c9b458");
-        }
         else
         {
             break;
@@ -94,6 +84,20 @@ function highlightSquares(scores, squares, setText=false)
     }
 
     generateTooltips();
+}
+
+function highlightPartialSquares(guessing, squares)
+{
+    for (let i = 0; i < squares.length; i++)
+    {
+        let elm = $(squares[i]);
+
+        if (currentWord.split(" ").includes(guessing.split(" ")[i]))
+        {
+            elm.css("color", "#ffffff");
+            elm.css("background-color", "#c9b458");
+        }
+    }
 }
 
 function updateScore(scores)
@@ -146,6 +150,7 @@ function triedGuess()
 
         let scores = count_score(currentWord, result);
         
+        highlightPartialSquares(result, wordContainer.children());
         highlightSquares(count_score(result, currentWord), wordContainer.children());
         
 
@@ -233,14 +238,6 @@ function count_score(ipa1, ipa2)
     for (let i = 0; i < ipa1.length; i++)
     {
         scores.push(0);
-    }
-
-    for (let i = 0; i < ipa1.length; i++)
-    {
-        if (ipa2.includes(ipa1[i]))
-        {
-            scores[i] = 0.5;
-        }
     }
 
     for (let i = 0; i < ipaShorter.length; i++)
