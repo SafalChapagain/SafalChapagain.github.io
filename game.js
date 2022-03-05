@@ -34,7 +34,7 @@ function getTodaysWord()
     const firstDate = new Date(2022, 1, 1);
     const secondDate = new Date();
     
-    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) - 5;
+    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) - 10;
 
     $("#wordCount").text(`Word ${diffDays % words.length}`)
 
@@ -150,7 +150,7 @@ function triedGuess()
 
         let scores = count_score(currentWord, result);
         
-        highlightPartialSquares(result, wordContainer.children());
+        //highlightPartialSquares(result, wordContainer.children()); 
         highlightSquares(count_score(result, currentWord), wordContainer.children());
         
 
