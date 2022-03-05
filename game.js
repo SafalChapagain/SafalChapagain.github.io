@@ -34,7 +34,7 @@ function getTodaysWord()
     const firstDate = new Date(2022, 1, 1);
     const secondDate = new Date();
     
-    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) + 1;
 
     $("#wordCount").text(`Word ${diffDays % words.length}`)
 
@@ -57,6 +57,11 @@ function highlightSquares(scores, squares, setText=false)
                 elm.children().text(currentWord.split(" ")[i]);
             }
         }
+        else if (scores[i] == 0.5)
+        {
+            elm.css("color", "#ffffff");
+            elm.css("background-color", "#c9b458");
+        }
         else
         {
             break;
@@ -76,6 +81,11 @@ function highlightSquares(scores, squares, setText=false)
             {
                 elm.children().text(currentWord.split(" ")[i]);
             }
+        }
+        else if (scores[i] == 0.5)
+        {
+            elm.css("color", "#ffffff");
+            elm.css("background-color", "#c9b458");
         }
         else
         {
@@ -223,6 +233,14 @@ function count_score(ipa1, ipa2)
     for (let i = 0; i < ipa1.length; i++)
     {
         scores.push(0);
+    }
+
+    for (let i = 0; i < ipa1.length; i++)
+    {
+        if (ipa2.includes(ipa1[i]))
+        {
+            scores[i] = 0.5;
+        }
     }
 
     for (let i = 0; i < ipaShorter.length; i++)
