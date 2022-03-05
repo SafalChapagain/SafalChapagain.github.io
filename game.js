@@ -1,5 +1,5 @@
 let history = [];
-var currentWord = [];
+var currentWord = "";
 var currentScores = [];
 
 $(document).ready(function()
@@ -34,7 +34,7 @@ function getTodaysWord()
     const firstDate = new Date(2022, 1, 1);
     const secondDate = new Date();
     
-    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) + 3;
+    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
 
     $("#wordCount").text(`Word ${diffDays % words.length}`)
 
@@ -92,6 +92,22 @@ function updateScore(scores)
     {
         highlightSquares(scores, document.querySelectorAll("#currentWord .phonemeContainer"), true);
         currentScores = scores;
+
+        let complete = true;
+
+        for (let i of currentScores)
+        {
+            if (i == 0)
+            {
+                complete = false;
+                break;
+            }
+        }
+
+        if (complete)
+        {
+            $("#inputContainer").hide("drop", {direction: "right"}, 400);
+        }
     }
 }
 
