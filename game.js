@@ -34,7 +34,7 @@ function getTodaysWord()
     const firstDate = new Date(2022, 1, 1);
     const secondDate = new Date();
     
-    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) - 10;
+    const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) - 5;
 
     $("#wordCount").text(`Word ${diffDays % words.length}`)
 
