@@ -106,22 +106,6 @@ function updateScore(scores)
     {
         highlightSquares(scores, document.querySelectorAll("#currentWord .phonemeContainer"), true);
         currentScores = scores;
-
-        let complete = true;
-
-        for (let i of currentScores)
-        {
-            if (i == 0)
-            {
-                complete = false;
-                break;
-            }
-        }
-
-        if (complete)
-        {
-            $("#inputContainer").hide("drop", {direction: "right"}, 400);
-        }
     }
 }
 
@@ -155,6 +139,11 @@ function triedGuess()
         
 
         updateScore(scores);
+       
+        if (currentWord.split(" ") == result.split(" "))
+        {
+            $("#inputContainer").hide("drop", {direction: "right"}, 400);
+        }
 
         $("#guessInput").val("");
     }
