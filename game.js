@@ -38,7 +38,7 @@ function getTodaysWord()
 
     let word = words[diffDays % words.length];
     
-    $("#wordCount").text(`Word ${word[0]}`)
+    $("#wordCount").text(`Word ${diffDays % words.length}`)
     $("#syllableCount").text(`Syllables: ${word[1]}`);
 
     return convert(word[0]);
