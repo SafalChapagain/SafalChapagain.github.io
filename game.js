@@ -35,7 +35,7 @@ function getTodaysWord()
     
     const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay)) - 10;
 
-    let word = Object.keys(words)[diffDays % words.length][0];
+    let word = Object.keys(words)[diffDays % words.length];
     
     $("#wordCount").text(`Word ${diffDays % words.length}`)
     $("#syllableCount").text("Syllables: ", words[word]);
