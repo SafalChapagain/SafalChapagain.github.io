@@ -155,6 +155,8 @@ function triedGuess()
         
 
         updateScore(scores);
+
+        $("#guessInput").val("");
     }
 }
 
