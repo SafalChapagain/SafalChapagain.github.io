@@ -142,8 +142,28 @@ function triedGuess()
         
 
         updateScore(scores);
+
+        console.log(currentWord.split(" "), result.split(" "));
+
+        let complete = true;
+
+        if (result.length != currentWord.length)
+        {
+             complete = false;
+        }
+        else
+        {
+             for (let i = 0; i < currentWord.length; i++)
+             {
+                 if (!same_sound(currentWord[i], result[i]))
+                 {
+                     complete = false;
+                     break;
+                 }
+             }
+        }
        
-        if (currentWord.split(" ") == result.split(" "))
+        if (complete)
         {
             $("#inputContainer").hide("drop", {direction: "right"}, 400);
         }
