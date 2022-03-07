@@ -127,7 +127,7 @@ function updateScore(scores)
 
 function triedGuess()
 {
-    let word = $("#guessInput").val().toLower();
+    let word = $("#guessInput").val().toLowerCase();
     let result = guess(word);
 
     if (result == null || history.includes(word))
